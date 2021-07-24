@@ -10,14 +10,14 @@ struct Command: ParsableCommand {
     @Argument(help: "白でプレイするAIのコードが書かれたswiftファイルのパス。\"manual\"を指定するとマニュアルでプレイできる。")
     var light: String
     
-    @Option(name: .long, help: "Docker上で安全に対戦させる。")
+    @Flag(name: .long, help: "Docker上で安全に対戦させる。")
     var docker: Bool = false
 
     func run() throws {
         var game: Game = .init()
         var moveCount: Int = 1
 
-        let runPath: String = ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent("run")
+        let runPath: String = ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent(docker ? "run-docker" : "run")
 
         print(game.board.description)
         print()
