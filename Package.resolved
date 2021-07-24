@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftShell",
+        "repositoryURL": "https://github.com/kareman/SwiftShell.git",
+        "state": {
+          "branch": null,
+          "revision": "99680b2efc7c7dbcace1da0b3979d266f02e213c",
+          "version": "5.1.0"
+        }
+      },
+      {
+        "package": "SwiftyReversi",
+        "repositoryURL": "https://github.com/koher/swifty-reversi.git",
+        "state": {
+          "branch": null,
+          "revision": "b8b904ad881bcbbc1d3a9c6e0a697085a0e9dfa6",
+          "version": "0.2.0-beta"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
