@@ -17,7 +17,19 @@ struct Command: ParsableCommand {
         var game: Game = .init()
         var moveCount: Int = 1
 
-        let runPath: String = ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent(docker ? "run-docker" : "run")
+        let scriptPath = (#file as NSString).deletingLastPathComponent
+        if docker {
+            SwiftShell.run((scriptPath as NSString).appendingPathComponent("build-docker"), [dark, "dark"])
+            SwiftShell.run((scriptPath as NSString).appendingPathComponent("build-docker"), [light, "light"])
+        }
+        defer {
+            if docker {
+                SwiftShell.run((scriptPath as NSString).appendingPathComponent("clean-docker"), ["dark"])
+                SwiftShell.run((scriptPath as NSString).appendingPathComponent("clean-docker"), ["light"])
+            }
+        }
+
+        let runPath: String = (scriptPath as NSString).appendingPathComponent(docker ? "run-docker" : "run")
 
         print(game.board.description)
         print()
@@ -66,7 +78,12 @@ struct Command: ParsableCommand {
                     break
                 }
             } else {
-                let result = SwiftShell.run(runPath, [player, board])
+                let result: RunOutput
+                if docker {
+                    result = SwiftShell.run(runPath, ["\(turn)", board])
+                } else {
+                    result = SwiftShell.run(runPath, [player, board])
+                }
                 
                 guard result.exitcode == 0 else {
                     print(result.stderror)

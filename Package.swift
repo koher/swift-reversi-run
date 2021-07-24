@@ -17,7 +17,7 @@ let package = Package(
         .target(
             name: "swift-reversi-run",
             dependencies: ["SwiftyReversi", "SwiftShell", .product(name: "ArgumentParser", package: "swift-argument-parser")],
-            exclude: ["run", "run-docker"]),
+            exclude: ["run", "run-docker", "build-docker", "clean-docker"]),
         .testTarget(
             name: "swift-reversi-runTests",
             dependencies: ["swift-reversi-run"]),

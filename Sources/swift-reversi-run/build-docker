@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat $1 | docker run --name $2 -i --network none -m 200M --ulimit fsize=1000000:1000000 swift /bin/bash -c "cat > main.swift; swiftc -O main.swift"
+docker container start $2

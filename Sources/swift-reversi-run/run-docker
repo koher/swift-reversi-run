@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cat <(echo "$2") <(cat $1) | docker run -i --rm --network none -m 200M --ulimit fsize=1000000:1000000 swift /bin/bash -c "cat > input; tail -n +9 input > main.swift; head -n 8 input > board; swiftc -O main.swift; timeout 3 /bin/bash -c \"./main < board\""
+echo "$2" | docker exec -i $1 /bin/bash -c "cat > input; timeout 3 /bin/bash -c \"./main < input\""
