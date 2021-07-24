@@ -119,7 +119,9 @@ print(move.x, move.y)
 
 - [Samples/level-1.swift](Samples/level-1.swift)
 
-## ビルド
+### 実行方法
+
+#### ビルド
 
 リポジトリを `git clone` し、リポジトリのルートディレクトリで次のコマンドを実行して下さい。
 
@@ -127,15 +129,15 @@ print(move.x, move.y)
 swift build -c release
 ```
 
-## 実行
+#### 実行
 
-`swift-reversi-run` コマンドには次の形式で二つの引数を与えます。
+ビルドされた `swift-reversi-run` コマンドを使って、 AI のコード同士を対戦させることができます。  `swift-reversi-run` には次のように、対戦させる AI のコードのパスを渡します。
 
 ```
 swift-reversi-run <ai-swift-file-1> <ai-swift-file-2>
 ```
 
-`swift build -c release` でビルドした場合、 `.build/release/swift-reversi-run` にビルドされたバイナリがあるので、次のようにして実行します。
+`swift build -c release` でビルドした場合、 `.build/release/swift-reversi-run` にビルドされたバイナリが作られます。この場合、次のようにして実行することができます。
 
 ```
 .build/release/swift-reversi-run path/to/ai1.swift path/to/ai2.swift
